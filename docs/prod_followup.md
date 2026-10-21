@@ -65,6 +65,7 @@ PoC spine when these are wired:
 | Topic | PoC today | Prod expectation |
 | ----- | --------- | ---------------- |
 | **Package signing** | No `rh-sign-npm-packages`; pipeline ships unsigned `.tgz` to Pulp | Add signing task (mirror `rh-sign-python-wheels`); gate on signing secret; optional compliance fields in attestation predicate |
+| **Pulp npm provenance** | No `content/npm/provenance/`; cannot host DSSE next to packages (Python has PEP 740 provenance) | See [story-pulp-npm-package-provenance.md](./story-pulp-npm-package-provenance.md) — pulp_npm stores cosign DSSE (SLSA v1), not PEP 740; then wire upload from release |
 | **Atlas / SBOM upload** | Not wired | Wire when ProdSec requires (same bar as Python when enabled) |
 | **Upload client** | `curl` + Pulp REST in `upload-npm-pulp` | Prefer `pulp-cli` (or shared plumbing-utils) for maintainability, retries, and API drift |
 | **Compliance file sidecars** | Labels (`tl.compliance_level`) applied on the npm content unit; `PULP_FILE_REPOSITORY` optional and usually unset → **no** adjacent `*.tl-compliance.json` in a file repo | Create a Pulp **file** repository for compliance JSON; set `PULP_FILE_REPOSITORY` via RPA / `collect-task-params`; stop relying on labels alone for operators who need the full sidecar |
