@@ -10,7 +10,7 @@ set -euo pipefail
 VERSION="$(jq -r .version "${MANIFEST_PATH}")"
 SOURCE_URL="$(jq -r .source.url "${MANIFEST_PATH}")"
 SOURCE_REF="$(jq -r .source.ref "${MANIFEST_PATH}")"
-TL_PLATFORM="@calunga/better-sqlite3-linux-x64"
+TL_PLATFORM="@lightwell/better-sqlite3-linux-x64"
 RECIPE_DIR="$(cd "$(dirname "${MANIFEST_PATH}")" && pwd)"
 
 path_under_out() {
@@ -41,7 +41,7 @@ pack_dir() {
 
 SRC="${WORK_DIR}/better-sqlite3-src"
 MAIN_STAGE="${WORK_DIR}/better-sqlite3-main-pack"
-PLATFORM_STAGE="${WORK_DIR}/calunga-platform"
+PLATFORM_STAGE="${WORK_DIR}/lightwell-platform"
 MAIN_TGZ_REL="$(jq -r '.outputs[] | select(.type == "npm-package") | .path' "${MANIFEST_PATH}")"
 PLATFORM_TGZ_REL="$(jq -r '.outputs[] | select(.type == "tl-platform-package") | .path' "${MANIFEST_PATH}")"
 main_tgz="$(path_under_out "${MAIN_TGZ_REL}")"
@@ -49,7 +49,7 @@ platform_tgz="$(path_under_out "${PLATFORM_TGZ_REL}")"
 NATIVE_BIN="${SRC}/build/Release/better_sqlite3.node"
 
 rm -rf "${SRC}" "${MAIN_STAGE}" "${PLATFORM_STAGE}"
-mkdir -p "${OUT_DIR}" "${OUT_DIR}/@calunga"
+mkdir -p "${OUT_DIR}" "${OUT_DIR}/@lightwell"
 
 echo "[build.entrypoint] Cloning ${SOURCE_URL} @ ${SOURCE_REF}"
 git clone --depth 1 --branch "${SOURCE_REF}" "${SOURCE_URL}" "${SRC}"
@@ -103,4 +103,4 @@ pack_dir "${PLATFORM_STAGE}" "${platform_tgz}"
 assert_tgz_has_member "${platform_tgz}" package/better_sqlite3.node
 
 echo "[build.entrypoint] Outputs:"
-ls -la "${OUT_DIR}" "${OUT_DIR}/@calunga"
+ls -la "${OUT_DIR}" "${OUT_DIR}/@lightwell"

@@ -2,6 +2,7 @@
   "name": "esbuild",
   "version": "0.28.0",
   "description": "JavaScript bundler — TL linux-x64 binary + JS wrapper",
+  "stream": "validated",
   "native_tier": "B",
   "source": {
     "url": "https://github.com/evanw/esbuild.git",
@@ -27,13 +28,13 @@
     {
       "id": "linux-x64-binary",
       "type": "tl-platform-package",
-      "path": "out/@calunga/esbuild-linux-x64-0.28.0.tgz",
-      "pulp_name": "@calunga/esbuild-linux-x64",
+      "path": "out/@lightwell/esbuild-linux-x64-0.28.0.tgz",
+      "pulp_name": "@lightwell/esbuild-linux-x64",
       "platform": "linux-x64",
       "libc": "glibc"
     }
   ],
   "optional_dependencies_published": [
-    "@calunga/esbuild-linux-x64@0.28.0"
+    "@lightwell/esbuild-linux-x64@0.28.0"
   ]
 }
