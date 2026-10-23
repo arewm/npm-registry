@@ -78,7 +78,7 @@ echo "${main_pkg}" | jq -e '.scripts.install == null' >/dev/null || {
     echo "Published main package must not retain upstream install script" >&2
     exit 1
 }
-echo "${main_pkg}" | jq -e '.optionalDependencies["@calunga/better-sqlite3-linux-x64"] == "'"${VERSION}"'"' >/dev/null || {
+echo "${main_pkg}" | jq -e '.optionalDependencies["@lightwell/better-sqlite3-linux-x64"] == "'"${VERSION}"'"' >/dev/null || {
     echo "Main package missing TL optional dependency" >&2
     exit 1
 }

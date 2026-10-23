@@ -1,10 +1,10 @@
 'use strict';
-// TL install shim — copies prebuilt addon from @calunga/better-sqlite3-linux-x64 (Pulp).
+// TL install shim — copies prebuilt addon from @lightwell/better-sqlite3-linux-x64 (Pulp).
 // No prebuild-install or node-gyp on consumer machines.
 const fs = require('fs');
 const path = require('path');
 
-const platformPkg = '@calunga/better-sqlite3-linux-x64';
+const platformPkg = '@lightwell/better-sqlite3-linux-x64';
 let src;
 try {
   src = require.resolve(`${platformPkg}/better_sqlite3.node`);
